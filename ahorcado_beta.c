@@ -16,32 +16,32 @@ int main(){
 	char caracter;			//ES LA LETRA QUE INGRESARA PARA JUGAR
 	int activar=0;			//ACTIVA EL JUEGO
 	int muertes=0;			//contabiliza las fallas
-	int vidas=3;
+	int vidas=3;			//SON LAS VIDAS DEL JUEGO  -- OJO --HAY QUE CAMBIAR AQUI Y ENTROS LUGARES SI SE DESEA MAS VIDAS
 	char cadenaGanadora[20]; //para comparar si gano o no
 	do{
-		menu();		
-		estado=1;
-		banderaJuego=1;
-		activar=0;
-		muertes=0;
-		vidas=3;
-		memset (cadena, 0, 40);
-		memset (cadenaGanadora, 0, 20);					
-		scanf("%c",&opcion);	
-		int c,cont=0;
+		menu();										//LLAMA AL MENU CADA VEZ QUE SE ELIGE UNA OPCION
+		estado=1;									//ES LA 'IMAGEN' DEL AVATAR 1 AL 4
+		banderaJuego=1;								//CUANDO GANE O PIERDA SE TERMINA EL CICLO 
+		activar=0;									//INICIA EL JUEGO
+		muertes=0;									//SIRVE PARA VALIDAR LAS VIDAS
+		vidas=3;									//DISMIYE CON CADA LETRA QUE SE EQUIVOCA EN EL JUEGO
+		memset (cadena, 0, 40);						//MENSET => VACIA LA CADENA
+		memset (cadenaGanadora, 0, 20);				
+		scanf("%c",&opcion);						//INGRESA LA OPCION 1,2 O 3
+
 						
-		switch(opcion){							//CAPTURA LA OPCION REQUERIDA
-			case '1':									//GUARDA LA PALABRA EN LA CADENA palabraA
-				fflush(stdin);
-				system("cls");
+		switch(opcion){						
+			case '1':					//AQUI SE INGRESA LA PALABRA PARA EL JUEGO
+				fflush(stdin);			//PARA LIMPIAR LA MEMORIA
+				system("cls");			//LIMPIA LA PANTALLA
 				printf("Ingrese la palabra con un tamano maximo de 20 caracteres: \n");
-				gets(palabraA);
+				gets(palabraA);			
 				break;		
-			case '2':
+			case '2':							//****JUEGO*****
 				if(palabraA[0]!= '\0'){					//PREGUNTA SE LA CADENA ESTA VACIA. /0 SIGNIFICA FIN DE UNA CADENA
 					do{	
 						banderaJuego=1;
-						fflush(stdin);					//PARA LIMPIAR LA MEMORIA
+						fflush(stdin);					
 						system("cls");		
 						printf("\n****************************");						//LIMPIA LA PANTALLA PARA JUGAR
 						printf("\n********* A JUGAR **********");
@@ -55,12 +55,12 @@ int main(){
 						int i=0;
 						for (i=0;i<=(longitud+longitud-2);i++){
 							if(i%2==0){
-								if(activar==1){
-									if(cadena[i]=='_'){
-										if(palabraA[j]==caracter){
-											cadena[i]=palabraA[j];
-											cadenaGanadora[j]=palabraA[j];
-											muertes=muertes+1;
+								if(activar==1){									//PREGUNTA SI ES LA PRIVERA VEZ QUE INICIO EL JUEGO			
+									if(cadena[i]=='_'){							//PREGUNTA SI EN UN ESPACION YA ENCONTRO UNA LETRA: _ _ O _
+										if(palabraA[j]==caracter){				//COMPARA SI LA LETRA INGRESADA EXISTE CASO CONTRARIO PIERDE LA VIDA
+											cadena[i]=palabraA[j];				//AQUI LLENA LAS ESPACION _ _ _ ...
+											cadenaGanadora[j]=palabraA[j];		//GRAVA LAS LETRAS PARA AL FINAL COMPARAR SI GANO
+											muertes=muertes+1;					//SI PIERDE TIENE EL VALOR DE 0 CASO CONTRARIO >0
 										}
 									}	
 								}else{
@@ -70,28 +70,28 @@ int main(){
 								
 								j++;		
 							}else{
-								cadena[i]=' ';
+								cadena[i]=' ';									//ASIGNADA LOS ESPACION ENTRE LOS GUIONES BAJOS _ _
 							
 							}	
 						}
-						printf("  %s",cadena);
-						if(muertes==0){
+						printf("  %s",cadena);									//IMPRIME LOS ESPACIOS PARA LLENAR _ _ _
+						if(muertes==0){											//SI PIERDE LE MERMA UNA VIDA. SI MUERTE=0=PIERDE
 							estado=estado+1;
 							vidas=vidas-1;
 						}
 						
 						printf("\n\nMumero de vidas: %i",vidas);
 						printf("\nIngrese una letra: ");
-						if(strcmp(cadenaGanadora,palabraA)==0){
-							banderaJuego=0;
+						if(strcmp(cadenaGanadora,palabraA)==0){					//COMPARA ENTRE LOS CARACTES INGRESADAS Y LA CADENA ORIGINAL. VALIDA SI GANA
+							banderaJuego=0;										//FINALIZA EL JUEGO
 							system("cls");
-							ahorcado(estado);
-							ganaPierde(2);
+							ahorcado(estado);									//MUESTRA EL AVATAR
+							ganaPierde(2);										//LLAMA AL METODO DE WINNER O GAME OVER
 							printf("\n\n");
 							system("pause");
 						}
-						if(estado>4){
-							banderaJuego=0;
+						if(estado>4){											//CUANDO ESTADO ES IGUAL A 4 PIERDE Y FINALIZA EL JUEGO
+							banderaJuego=0;										//FINALIZA EL JUEGO
 							estado=1; 	
 							system("cls");
 							ahorcado(4);
@@ -99,7 +99,7 @@ int main(){
 							printf("\n\n");
 							system("pause");
 						}
-						scanf("%c",&caracter);
+						scanf("%c",&caracter);			//***CAPTURA EL CARACTER DEL JUEGO
 						activar=1;
 					}while(banderaJuego==1);
 					
