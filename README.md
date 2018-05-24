@@ -1,7 +1,6 @@
+### PROGRAMA DESARROLLADO EN C
 
-###PROGRAMA DESARROLLADO EN C
-
-##Juengo del ahorcado
+## Juego del ahorcado
 
 El juego esta desarrallado en lenguaje C. El juego puede presentar errores 
 debido a que es una version beta. Es decir, el juego esta a disposición de 
