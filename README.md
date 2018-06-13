@@ -1,3 +1,5 @@
+<p align="center"><img src="ahorcado.JPG"></p>
+
 ### PROGRAMA DESARROLLADO EN C
 
 ## Juego del ahorcado
