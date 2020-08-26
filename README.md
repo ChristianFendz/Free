@@ -24,4 +24,4 @@ sugerencias. El juego contiene:
 
 ## Modifcar el juego
 
-Lo puede modificar a utilizando cuanquier compilador de C. Se recomienda el uso de *Dev-CPP*
+Lo puede modificar a utilizando cualquier compilador de C. Se recomienda el uso de *Dev-CPP*
